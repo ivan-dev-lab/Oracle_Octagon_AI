@@ -6,7 +6,7 @@ from random import randint
 MAIN_URL = "https://ufc.ru"
 RATING_URL = "https://ufc.ru/rankings"
 
-def parse_fighters_urls ():
+def parse_fighters ():
     response = requests.get(RATING_URL)
     soup = BeautifulSoup(response.text, "html.parser").find_all(name="div", attrs={"class": "view-grouping-content"})
 
