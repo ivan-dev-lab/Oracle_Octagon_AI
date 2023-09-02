@@ -1,0 +1,176 @@
+,Division,FighterID,Name,Rank,URL
+0,Наилегчайший вес,432932,Александр Пантожа,0,https://ufc.ru/athlete/alexandre-pantoja
+1,Легчайший вес,800879,Шон О'Мэлли,0,https://ufc.ru/athlete/shon-omelli
+2,Полулегкий вес,808400,Александр Волкановски,0,https://ufc.ru/athlete/aleksandr-volkanovski
+3,Легкий вес,200505,Ислам Махачев,0,https://ufc.ru/athlete/islam-makhachev
+4,Полусредний вес,435814,Леон Эдвардс,0,https://ufc.ru/athlete/leon-edwards
+5,Средний вес,676482,Исраэль Адесанья,0,https://ufc.ru/athlete/israel-adesanya
+6,Полутяжелый вес,602904,Джамал Хилл,0,https://ufc.ru/athlete/dzhamakhal-khill
+7,Тяжелый вес,111083,Джон Джонс,0,https://ufc.ru/athlete/dzhon-dzhons
+8,Женский минимальный вес,760363,Вейли Жанг,0,https://ufc.ru/athlete/veyli-zhang
+9,Женский наилегчайший вес,320761,Алекса Грассо,0,https://ufc.ru/athlete/aleksa-grasso
+10,Наилегчайший вес,174886,Брэндон Морено ,1,https://ufc.ru/athlete/brendon-moreno
+11,Наилегчайший вес,238944,Дейвесон Фигередо ,2,https://ufc.ru/athlete/deyvezon-figeredo
+12,Наилегчайший вес,752432,Амир Альбази ,3,https://ufc.ru/athlete/amir-albazi
+13,Наилегчайший вес,323464,Брэндон Ройвал ,4,https://ufc.ru/athlete/brendon-royval
+14,Наилегчайший вес,846995,Кай Кара Фрэнс ,5,https://ufc.ru/athlete/kay-kara-frens
+15,Наилегчайший вес,783773,Матеус Николау ,6,https://ufc.ru/athlete/mateus-nikolau
+16,Наилегчайший вес,303080,Алекс Перез ,7,https://ufc.ru/athlete/alex-perez
+17,Наилегчайший вес,442535,Мэтт Шнелл ,8,https://ufc.ru/athlete/mett-shnell
+18,Наилегчайший вес,812799,Тим Эллиотт ,9,https://ufc.ru/athlete/tim-eliott
+19,Наилегчайший вес,417722,Манель Кейпе ,10,https://ufc.ru/athlete/manel-keype
+20,Наилегчайший вес,245126,Мухаммад Мокаев ,11,https://ufc.ru/athlete/liana-dzhodzhua-0
+21,Наилегчайший вес,118486,Су Мудаэржи ,12,https://ufc.ru/athlete/su-mudaezhri
+22,Наилегчайший вес,474859,Тагир Уланбеков ,13,https://ufc.ru/athlete/tagir-ulanbekov
+23,Наилегчайший вес,631520,Стив Эрцзег ,14,https://ufc.ru/athlete/dzhina-mazani-0
+24,Наилегчайший вес,558132,Коди Дарден ,15,https://ufc.ru/athlete/cody-durden
+25,Легчайший вес,402414,Алджэмейн Стерлинг ,1,https://ufc.ru/athlete/aldzhemeyn-sterling
+26,Легчайший вес,235956,Мераб Двалишвили ,2,https://ufc.ru/athlete/merb-dvalishvili
+27,Легчайший вес,469274,Генри Сехудо ,3,https://ufc.ru/athlete/genri-sekhudo
+28,Легчайший вес,361292,Кори Сэндхаген ,4,https://ufc.ru/athlete/kori-sendkhagen
+29,Легчайший вес,913637,Петр Ян ,5,https://ufc.ru/athlete/petr-yan
+30,Легчайший вес,356522,Марлон Вера ,6,https://ufc.ru/athlete/marlon-vera
+31,Легчайший вес,579487,Сонг Ядонг ,7,https://ufc.ru/athlete/song-yadong
+32,Легчайший вес,421856,Роб Фонт ,7,https://ufc.ru/athlete/rob-font
+33,Легчайший вес,109143,Доминик Круз ,9,https://ufc.ru/athlete/dominik-kruz
+34,Легчайший вес,716982,Педро Муньоз ,10,https://ufc.ru/athlete/pedro-munhoz
+35,Легчайший вес,609065,Умар Нурмагомедов ,11,https://ufc.ru/athlete/umar-nurmagomedov
+36,Легчайший вес,935276,Рики Симон ,12,https://ufc.ru/athlete/riki-saymon
+37,Легчайший вес,673240,Джонатан Мартинез ,13,https://ufc.ru/athlete/dzhonatan-martinez
+38,Легчайший вес,117543,Эдриен Янез ,14,https://ufc.ru/athlete/edrien-yanez
+39,Легчайший вес,136196,Крис Гутиеррез ,15,https://ufc.ru/athlete/kris-gutierez
+40,Полулегкий вес,139551,Макс Холлоуэй ,1,https://ufc.ru/athlete/max-holloway
+41,Полулегкий вес,314804,Яир Родригез ,2,https://ufc.ru/athlete/yair-rodriguez
+42,Полулегкий вес,766576,Брайэн Ортега ,3,https://ufc.ru/athlete/brian-ortega
+43,Полулегкий вес,354890,Арнольд Аллен ,4,https://ufc.ru/athlete/arnold-allen
+44,Полулегкий вес,796838,Илия Топурия ,5,https://ufc.ru/athlete/iliya-topuriya
+45,Полулегкий вес,172245,Джош Эмметт ,6,https://ufc.ru/athlete/dzhosh-emmet
+46,Полулегкий вес,281386,Келвин Кэттер ,7,https://ufc.ru/athlete/calvin-kattar
+47,Полулегкий вес,453328,Гига Чикадзе ,8,https://ufc.ru/athlete/giga-chikadze
+48,Полулегкий вес,762114,Мовсар Евлоев ,9,https://ufc.ru/athlete/movsar-evloev
+49,Полулегкий вес,273963,Чэн Сон Джунг ,10,https://ufc.ru/athlete/chen-son-dzhon
+50,Полулегкий вес,713972,Брайс Митчелл ,11,https://ufc.ru/athlete/bryce-mitchell
+51,Полулегкий вес,476137,Содик Юсуфф ,12,https://ufc.ru/athlete/sodik-yusuff
+52,Полулегкий вес,958786,Дэн Иге ,13,https://ufc.ru/athlete/den-idzh
+53,Полулегкий вес,643667,Эдсон Барбоза ,14,https://ufc.ru/athlete/edson-barboza
+54,Полулегкий вес,508624,Алекс Касэрес ,15,https://ufc.ru/athlete/alex-caceres
+55,Легкий вес,359689,Чарльз Оливейра ,1,https://ufc.ru/athlete/charlz-oliveyra
+56,Легкий вес,290764,Джастин Гейджи ,2,https://ufc.ru/athlete/dzhastin-getzhi
+57,Легкий вес,657944,Дастин Порье ,3,https://ufc.ru/athlete/dustin-poirier
+58,Легкий вес,611556,Бенэил Дариуш ,4,https://ufc.ru/athlete/beneil-dariush
+59,Легкий вес,681707,Майкл Чендлер ,5,https://ufc.ru/athlete/maykl-chendler
+60,Легкий вес,651268,Рафаэль Физиев ,6,https://ufc.ru/athlete/rafael-fiziev
+61,Легкий вес,369871,Матеуш Гамрот ,7,https://ufc.ru/athlete/mateush-gemrot
+62,Легкий вес,482864,Арман Царукян ,8,https://ufc.ru/athlete/arman-carukyan
+63,Легкий вес,736934,Дэн Хукер ,9,https://ufc.ru/athlete/den-khuker
+64,Легкий вес,646858,Грант Доусон ,10,https://ufc.ru/athlete/grant-douson
+65,Легкий вес,626781,Рафаэль Дос Аньос ,11,https://ufc.ru/athlete/rafael-dos-anos
+66,Легкий вес,212156,Джэлин Тёрнер ,12,https://ufc.ru/athlete/jalin-turner
+67,Легкий вес,690132,Ренато Мойкано ,13,https://ufc.ru/athlete/renato-moykano
+68,Легкий вес,913155,Мэтт Фревола ,14,https://ufc.ru/athlete/mett-frevola
+69,Легкий вес,211223,Диего Феррейра ,15,https://ufc.ru/athlete/diego-ferreira
+70,Полусредний вес,530010,Камару Усман ,1,https://ufc.ru/athlete/kamaru-usman
+71,Полусредний вес,153280,Колби Ковингтон ,2,https://ufc.ru/athlete/kolbi-kovington
+72,Полусредний вес,565654,Белал Мухаммад ,3,https://ufc.ru/athlete/belal-muhammad
+73,Полусредний вес,184233,Хамзат Чимаев ,4,https://ufc.ru/athlete/khamzat-chimaev
+74,Полусредний вес,802185,Гилберт Бёрнс ,5,https://ufc.ru/athlete/gilbert-byorns
+75,Полусредний вес,765893,Шавкат Рахмонов ,6,https://ufc.ru/athlete/shavkat-rakhmonov
+76,Полусредний вес,732383,Стивен Томпсон ,7,https://ufc.ru/athlete/stiven-tompson
+77,Полусредний вес,587713,Джефф Нил ,8,https://ufc.ru/athlete/geoff-neal
+78,Полусредний вес,145703,Шон Брэди ,9,https://ufc.ru/athlete/shon-bredi
+79,Полусредний вес,883036,Висенте Люке ,10,https://ufc.ru/athlete/visente-lyuke
+80,Полусредний вес,964735,Иэн Мачадо Гэрри ,11,https://ufc.ru/athlete/nassurdin-imavov-4
+81,Полусредний вес,580768,Нил Мэгни ,12,https://ufc.ru/athlete/neil-magny
+82,Полусредний вес,497736,Кевин Холлэнд ,13,https://ufc.ru/athlete/kevin-khollend
+83,Полусредний вес,350796,Джек Делла Маддалена ,14,https://ufc.ru/athlete/sara-elpar-0
+84,Полусредний вес,531109,Майкл Киеса ,15,https://ufc.ru/athlete/michael-chiesa
+85,Средний вес,184471,Дрикус Дю Плесси ,1,https://ufc.ru/athlete/drikus-du-plessis
+86,Средний вес,302691,Роберт Уиттакер ,2,https://ufc.ru/athlete/robert-whittaker
+87,Средний вес,414923,Джаред Каннонир ,3,https://ufc.ru/athlete/dzhared-kannone
+88,Средний вес,553219,Марвин Веттори ,4,https://ufc.ru/athlete/marvin-vettori
+89,Средний вес,104984,Шон Стрикланд ,5,https://ufc.ru/athlete/shon-strikland
+90,Средний вес,457507,Пауло Коста ,6,https://ufc.ru/athlete/paulo-kosta
+91,Средний вес,818447,Дерек Брансон ,7,https://ufc.ru/athlete/derek-branson
+92,Средний вес,407448,Роман Долидзе ,7,https://ufc.ru/athlete/roman-dolidze
+93,Средний вес,776294,Джек Херманссон ,9,https://ufc.ru/athlete/dzhek-khermansson
+94,Средний вес,871723,Брендан Аллен ,10,https://ufc.ru/athlete/brendan-allen
+95,Средний вес,119492,Келвин Гастелум ,11,https://ufc.ru/athlete/kelvin-gastelum
+96,Средний вес,202513,Нассурдин Имавов ,12,https://ufc.ru/athlete/nassurdin-imavov
+97,Средний вес,231716,Пол Крейг ,13,https://ufc.ru/athlete/pol-kreyg
+98,Средний вес,378050,Крис Кёртис ,14,https://ufc.ru/athlete/chris-curtis
+99,Средний вес,108592,Андре Муниз ,15,https://ufc.ru/athlete/andre-muniz
+100,Полутяжелый вес,202021,Иржи Прохазка ,1,https://ufc.ru/athlete/dzhiri-prokhazka
+101,Полутяжелый вес,181766,Магомед Анкалаев ,2,https://ufc.ru/athlete/magomed-ankalaev
+102,Полутяжелый вес,788520,Алекс Перейра ,3,https://ufc.ru/athlete/alex-pereira
+103,Полутяжелый вес,151983,Ян Блахович ,4,https://ufc.ru/athlete/jan-blachowicz
+104,Полутяжелый вес,789498,Александр Ракич ,5,https://ufc.ru/athlete/aleksandar-rakic
+105,Полутяжелый вес,628839,Джонни Уокер ,6,https://ufc.ru/athlete/dzhonni-uolker
+106,Полутяжелый вес,922579,Никита Крылов ,6,https://ufc.ru/athlete/nikita-krylov
+107,Полутяжелый вес,719344,Энтони Смит ,8,https://ufc.ru/athlete/entoni-smit
+108,Полутяжелый вес,131226,Волкан Оздемир ,9,https://ufc.ru/athlete/volkan-oezdemir
+109,Полутяжелый вес,761848,Раян Спэнн ,10,https://ufc.ru/athlete/ryan-spann
+110,Полутяжелый вес,706512,Халил Раунтри мл. ,11,https://ufc.ru/athlete/khalil-rauntri-ml
+111,Полутяжелый вес,353517,Азамат Мурзаканов ,12,https://ufc.ru/athlete/andre-muniz-0
+112,Полутяжелый вес,849570,Доминик Рейес ,13,https://ufc.ru/athlete/dominik-reyes
+113,Полутяжелый вес,646176,Алонзо Менфилд ,14,https://ufc.ru/athlete/alonzo-menifield
+114,Полутяжелый вес,965861,Дастин Джейкоби ,15,https://ufc.ru/athlete/dastin-dzheykobi
+115,Тяжелый вес,876422,Сергей Павлович ,1,https://ufc.ru/athlete/sergey-pavlovich
+116,Тяжелый вес,756618,Сирил Ган ,2,https://ufc.ru/athlete/ciryl-gane
+117,Тяжелый вес,751521,Стипе Миочич ,3,https://ufc.ru/athlete/stipe-miochich
+118,Тяжелый вес,149457,Том Аспинэлл ,4,https://ufc.ru/athlete/tom-aspinall
+119,Тяжелый вес,579920,Кёртис Блэйдс ,5,https://ufc.ru/athlete/kyortis-bleyds
+120,Тяжелый вес,118416,Тай Туиваса ,6,https://ufc.ru/athlete/tay-tuivasa
+121,Тяжелый вес,686831,Сергей Спивак ,7,https://ufc.ru/athlete/sergey-spivak-0
+122,Тяжелый вес,207997,Александр Волков ,8,https://ufc.ru/athlete/aleksandr-volkov
+123,Тяжелый вес,924546,Жаилтон Алмейда ,9,https://ufc.ru/athlete/kori-makkenna-10
+124,Тяжелый вес,639373,Деррик Льюис ,10,https://ufc.ru/athlete/derrik-lyuis
+125,Тяжелый вес,873620,Марчин Тыбура ,11,https://ufc.ru/athlete/marchin-tybura
+126,Тяжелый вес,499673,Жаирзиньо Розенстрайк ,12,https://ufc.ru/athlete/jairzinho-rozenstruik
+127,Тяжелый вес,697209,Александр Романов ,13,https://ufc.ru/athlete/aleksandr-romanov
+128,Тяжелый вес,804271,Маркос Рожерио Де Лима ,14,https://ufc.ru/athlete/markos-rozherio-de-lima
+129,Тяжелый вес,972974,Родриго Насименто Феррейра ,15,https://ufc.ru/athlete/rodrigo-nasimento-ferreyra
+130,Женский минимальный вес,811033,Карла Эспарза ,1,https://ufc.ru/athlete/carla-esparza
+131,Женский минимальный вес,300223,Роуз Намаюнас ,2,https://ufc.ru/athlete/rouz-namayunas
+132,Женский минимальный вес,235606,Ян Сяонянь ,3,https://ufc.ru/athlete/yan-syaonyan
+133,Женский минимальный вес,592979,Татьяна Суарез ,4,https://ufc.ru/athlete/tatyana-suarez
+134,Женский минимальный вес,899628,Аманда Лемос ,5,https://ufc.ru/athlete/amanda-lemos
+135,Женский минимальный вес,281361,Джессика Андрадэ ,6,https://ufc.ru/athlete/jessica-andrade
+136,Женский минимальный вес,389613,Вирна Яндироба ,7,https://ufc.ru/athlete/virna-yandiroba
+137,Женский минимальный вес,757541,Маккензи Дёрн ,8,https://ufc.ru/athlete/makkenzi-dyorn
+138,Женский минимальный вес,677638,Марина Родригез ,9,https://ufc.ru/athlete/marina-rodriguez
+139,Женский минимальный вес,589815,Тиша Торрес ,10,https://ufc.ru/athlete/tecia-torres
+140,Женский минимальный вес,265520,Аманда Рибас ,11,https://ufc.ru/athlete/amanda-ribas
+141,Женский минимальный вес,792440,Луана Пиньеро ,12,https://ufc.ru/athlete/pet-sabatini-1
+142,Женский минимальный вес,885528,Мишель Уотерсон ,13,https://ufc.ru/athlete/mishel-uoterson
+143,Женский минимальный вес,532281,Табата Риччи ,14,https://ufc.ru/athlete/tabatha-ricci
+144,Женский минимальный вес,222799,Анджела Хилл ,15,https://ufc.ru/athlete/andzhela-khill
+145,Женский наилегчайший вес,860089,Валентина Шевченко ,1,https://ufc.ru/athlete/valentina-shevchenko
+146,Женский наилегчайший вес,957551,Эрин Бланчфилд ,2,https://ufc.ru/athlete/erin-blanchfield
+147,Женский наилегчайший вес,873816,Манон Фиро ,3,https://ufc.ru/athlete/manon-firot
+148,Женский наилегчайший вес,620262,Тайла Сантос ,4,https://ufc.ru/athlete/tayla-santos
+149,Женский наилегчайший вес,780257,Кэтлин Чукагян ,5,https://ufc.ru/athlete/katlyn-chookagian
+150,Женский наилегчайший вес,185806,Джессика Андрадэ ,6,https://ufc.ru/athlete/jessica-andrade
+151,Женский наилегчайший вес,361270,Лорен Мёрфи ,7,https://ufc.ru/athlete/loren-myorfi
+152,Женский наилегчайший вес,272516,Мэйси Барбер ,8,https://ufc.ru/athlete/meysi-barber
+153,Женский наилегчайший вес,434315,Дженнифер Майа ,9,https://ufc.ru/athlete/jennifer-maia
+154,Женский наилегчайший вес,673785,Вивьен Арауджо ,10,https://ufc.ru/athlete/viviane-araujo
+155,Женский наилегчайший вес,856283,Аманда Рибас ,11,https://ufc.ru/athlete/amanda-ribas
+156,Женский наилегчайший вес,834632,Кейси О'Неилл ,12,https://ufc.ru/athlete/keysi-oneill
+157,Женский наилегчайший вес,169322,Наталья Силва ,13,https://ufc.ru/athlete/keylen-born-1
+158,Женский наилегчайший вес,286867,Трэйси Кортез ,14,https://ufc.ru/athlete/treysi-kortez
+159,Женский наилегчайший вес,810328,Карине Силва ,15,https://ufc.ru/athlete/trevin-dzhayls-0
+160,Женский легчайший вес,847803,Джулианна Пенья ,1,https://ufc.ru/athlete/dzhulianna-penya
+161,Женский легчайший вес,866102,Ракэль Пеннингтон ,2,https://ufc.ru/athlete/rakel-pennington
+162,Женский легчайший вес,352874,Майра Буэно Сильва ,3,https://ufc.ru/athlete/mayra-bueno-silva
+163,Женский легчайший вес,520390,Кетлин Виера ,4,https://ufc.ru/athlete/ketlin-viera
+164,Женский легчайший вес,137865,Ирэн Алдана ,5,https://ufc.ru/athlete/iren-aldana
+165,Женский легчайший вес,380249,Холли Холм ,5,https://ufc.ru/athlete/kholli-kholm
+166,Женский легчайший вес,898607,Пэнни Кианзад ,7,https://ufc.ru/athlete/pannie-kianzad
+167,Женский легчайший вес,885736,Яна Сантос ,8,https://ufc.ru/athlete/yana-kunickaya
+168,Женский легчайший вес,764635,Мэйси Чиассон ,9,https://ufc.ru/athlete/macy-chiasson
+169,Женский легчайший вес,658064,Кэрол Роса ,9,https://ufc.ru/athlete/kerol-rosa
+170,Женский легчайший вес,580429,Норма Дюмонт Виана ,11,https://ufc.ru/athlete/norma-dumont
+171,Женский легчайший вес,813197,Миша Тэйт ,12,https://ufc.ru/athlete/misha-teyt
+172,Женский легчайший вес,499200,Джулия Авила ,13,https://ufc.ru/athlete/dzhuliya-avila
+173,Женский легчайший вес,644422,Джозиане Нунес ,14,https://ufc.ru/athlete/josiane-nunes
+174,Женский легчайший вес,595811,Челси Чендлер ,15,https://ufc.ru/athlete/chelsi-chedler
