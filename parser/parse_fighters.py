@@ -26,7 +26,8 @@ def parse_fighters ():
             
             fighter["Division"] = division
             fighter["FighterID"] = randint(100000, 999999)
-            fighter["Name"] = block.find(name="h5").get_text()
+            # последний символ при заборе имени - пробел, поэтому он не берется
+            fighter["Name"] = block.find(name="h5").get_text()[:-1]
             fighter["Rank"] = 0
             fighter["URL"] = MAIN_URL + block.find(name="h5").findChild(name="a").get("href")        
         
@@ -45,7 +46,8 @@ def parse_fighters ():
 
             fighter["Division"] = division
             fighter["FighterID"] = randint(100000, 999999)
-            fighter["Name"] = block.find(name="td", attrs={"class": "views-field-title"}).get_text()
+            # последний символ при заборе имени - пробел, поэтому он не берется
+            fighter["Name"] = block.find(name="td", attrs={"class": "views-field-title"}).get_text()[:-1]
             fighter["Rank"] = block.find(name="td", attrs={"class": "views-field-weight-class-rank"}).get_text().rstrip()
             fighter["URL"] = MAIN_URL + block.find(name="td", attrs={"class": "views-field-title"}).findChild(name="a").get("href")        
         
