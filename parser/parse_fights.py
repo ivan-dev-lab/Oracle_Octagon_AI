@@ -24,4 +24,65 @@ def parse_events () -> list:
         buttons = soup.find_all(name="a", attrs={"class": "e-button--white"})
         for link in buttons:
             if link.findNext("span").get_text().strip().lower() == "итоги":
-                Urls.append(MAIN_URL+link.get("href"))        
+                Urls.append(MAIN_URL+link.get("href"))   
+
+def check_fighters (names: list[str], urls: list[str]) -> tuple[list[str|int]]:
+    # В ID_list добавляются идентификаторы бойцов, которые нашлись в базе
+    # В URL_list добавляются ссылки на тех бойцов, которых в базе нет
+    # ссылки из URL_list будут парситься отдельно функцией parse_one_fighter() из parse_fighters.py
+    # возвращает кортеж с массивами идентификаторов бойцов и ссылок на тех, кого надо парсить
+    ID_list = []
+    URL_list = []
+
+    for index, name in enumerate(names):
+        FighterID = FIGHTERS_DF[FIGHTERS_DF["Name"] == name]["FighterID"].values
+    
+        if FighterID.size > 0:             
+            if FIGHTERS_DATA_DF[FIGHTERS_DATA_DF["FighterID"] == FighterID[0]]["FighterID"].values.size > 0:
+                ID_list.append(FighterID[0])
+            else:
+                URL_list.append(urls[index])
+
+        else: URL_list.append(urls[index])
+
+    return (ID_list, URL_list)
+
+
+def parse_fights ():
+    LINKS_EVENTS = [] # parse_events()  
+    # убрать после завершения работы    
+    with open("events.txt", "r", encoding="utf8") as f:
+        for line in f.readlines():
+            LINKS_EVENTS.append(line.strip())
+
+    for url in LINKS_EVENTS:
+        response = requests.get(url)
+        soup = BeautifulSoup(response.text, "html.parser")
+
+        fight_cards_ResultSet = soup.find(name="ul", attrs={"class": "l-listing__group--bordered"}).find_all(name="li")
+        fight_cards = []
+
+        for card in fight_cards_ResultSet:
+            # парсинг имён двух бойцов. Далее по ним ведется поиск в fighters.csv 
+            # -> если находится - возвращает FighterID
+            # -> если не находится, то пытается спарсить данные бойца. 
+            # Если получается -> заносит бойца в fighters.csv и fighters_data.csv -> возвращает FighterID
+            fighter_names = []
+            fighter_names.append(soup.find(name="div", attrs={"class": "c-listing-fight__corner-name--red"}).get_text().strip().replace("\n", " "))
+            fighter_names.append(soup.find(name="div", attrs={"class": "c-listing-fight__corner-name--blue"}).get_text().strip().replace("\n", " "))
+
+            fighter_urls = []
+            fighter_urls.append(soup.find(name="div", attrs={"class": "c-listing-fight__corner-name--red"}).find(name="a").get("href"))
+            fighter_urls.append(soup.find(name="div", attrs={"class": "c-listing-fight__corner-name--blue"}).find(name="a").get("href"))
+
+            print(fighter_names, fighter_urls, sep=", ")
+            # check_fighters(fighter_names, fighter_urls)
+
+            
+            break
+
+        break
+            
+        
+
+# parse_fights ()
