@@ -117,7 +117,7 @@ def parse_fighters_data ():
     columns = fighters_columns + list(fighters_data[0].keys())
     fighters_data_df = pd.DataFrame(columns=columns)
 
-    fighters_data_df = pd.concat([fighters_df, pd.DataFrame(fighters_data)], axis=1)
+    fighters_data_df = pd.concat([fighters_df["FighterID"], pd.DataFrame(fighters_data)], axis=1)
     fighters_data_df.dropna(inplace=True)
     
     fighters_data_df.to_csv("data/fighters_data.csv")
