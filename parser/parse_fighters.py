@@ -111,13 +111,16 @@ def parse_fighters_data ():
             print(f"{url} - боец пропущен")
             continue
 
-    columns = list(fighters_df.columns) + list(fighters_data[0].keys())
+    fighters_columns = list(fighters_df.columns)
+    fighters_columns.remove("URL")
+
+    columns = fighters_columns + list(fighters_data[0].keys())
     fighters_data_df = pd.DataFrame(columns=columns)
 
     fighters_data_df = pd.concat([fighters_df, pd.DataFrame(fighters_data)], axis=1)
+    fighters_data_df.dropna(inplace=True)
+    
     fighters_data_df.to_csv("data/fighters_data.csv")
 
-def drop_None (start_path: str, final_path: str):
-    data = pd.read_csv(start_path, index_col=[0])
-    data.dropna(inplace=True)
-    data.to_csv(final_path)
+
+parse_fighters_data ()
