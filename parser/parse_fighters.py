@@ -7,57 +7,11 @@ import time
 MAIN_URL = "https://ufc.ru"
 RATING_URL = "https://ufc.ru/rankings"
 
-def parse_fighters ():
-    response = requests.get(RATING_URL)
-    soup = BeautifulSoup(response.text, "html.parser").find_all(name="div", attrs={"class": "view-grouping-content"})
-
-    fighters = []
-
-    # два цикла нужны потому что на сайте чемпионы по весовым категориям и полу представлены отдельно, а все остальные бойцы в табличном виде
-
-    # цикл для забора информации по чемпионам
-    for block in soup:
-        fighter = {}
-
-        try:
-            # категория где фигурирует название Top Rank является абсолютной, а значит там смешаны все бойцы, что плохо, тк программа их разделяет по весовым категориям и по полу
-            division = block.find(name="h4").get_text()
-            if division.find("Top Rank") != -1: continue
-            
-            fighter["Division"] = division
-            fighter["FighterID"] = randint(100000, 999999)
-            # последний символ при заборе имени - пробел, поэтому он не берется
-            fighter["Name"] = block.find(name="h5").get_text()
-            fighter["Rank"] = 0
-            fighter["URL"] = MAIN_URL + block.find(name="h5").findChild(name="a").get("href")        
-        
-            fighters.append(fighter)
-        except: continue
-
-    # цикл для забора информации по остальным бойцам
-    for content in soup:
-        
-        # категория где фигурирует название Top Rank является абсолютной, а значит там смешаны все бойцы, что плохо, тк программа их разделяет по весовым категориям и по полу
-        division = content.find(name="h4").get_text()
-        if division.find("Top Rank") != -1: continue   
-
-        for block in content.findAll(name="tr"):
-            fighter = {}
-
-            fighter["Division"] = division
-            fighter["FighterID"] = randint(100000, 999999)
-            # последний символ при заборе имени - пробел, поэтому он не берется
-            fighter["Name"] = block.find(name="td", attrs={"class": "views-field-title"}).get_text()[:-1]
-            fighter["Rank"] = block.find(name="td", attrs={"class": "views-field-weight-class-rank"}).get_text().rstrip()
-            fighter["URL"] = MAIN_URL + block.find(name="td", attrs={"class": "views-field-title"}).findChild(name="a").get("href")        
-        
-            fighters.append(fighter)
-
-
-    fighters_df = pd.DataFrame(data=fighters)
-    fighters_df.to_csv("data/fighters.csv")
 # код парсинга данных бойца вынесен в отдельную функцию для более удобного использования
-def parse_one_fighter (url: str, soup: BeautifulSoup) -> dict:
+def parse_fighter (url: str) -> dict:
+    response = requests.get(url)
+    soup = BeautifulSoup(response.text, "html.parser")
+
     fighter_data = {}
     
     try:
@@ -105,27 +59,52 @@ def parse_one_fighter (url: str, soup: BeautifulSoup) -> dict:
         print(f"{url} - боец пропущен")
         return {}
 
-def parse_fighters_data ():
-    fighters_df = pd.read_csv("data/fighters.csv", usecols=["FighterID", "URL"])
-    fighters_data = []
+def parse_top_fighters ():
+    response = requests.get(RATING_URL)
+    soup = BeautifulSoup(response.text, "html.parser").find_all(name="div", attrs={"class": "view-grouping-content"})
 
-    
-    for url in fighters_df["URL"]:
-        response = requests.get(url)
-        soup = BeautifulSoup(response.text, "html.parser")
-        
-        fighter_data = parse_one_fighter(url, soup)
-        if fighter_data == {}: continue
-        fighters_data.append(fighter_data)
+    fighters = []
 
+    # два цикла нужны потому что на сайте чемпионы по весовым категориям и полу представлены отдельно, а все остальные бойцы в табличном виде
 
-    fighters_columns = list(fighters_df.columns)
-    fighters_columns.remove("URL")
+    # цикл для забора информации по чемпионам
+    for block in soup:
+        fighter = {}
 
-    columns = fighters_columns + list(fighters_data[0].keys())
-    fighters_data_df = pd.DataFrame(columns=columns)
+        try:
+            # категория где фигурирует название Top Rank является абсолютной, а значит там смешаны все бойцы, что плохо, тк программа их разделяет по весовым категориям и по полу
+            division = block.find(name="h4").get_text()
+            if division.find("Top Rank") != -1: continue
+            
+            fighter["Division"] = division
+            fighter["FighterID"] = int(randint(100000, 999999))
+            # последний символ при заборе имени - пробел, поэтому он не берется
+            fighter["Name"] = block.find(name="h5").get_text()
+            fighter["URL"] = MAIN_URL + block.find(name="h5").findChild(name="a").get("href")        
+            fighter.update(parse_fighter(fighter["URL"]))
 
-    fighters_data_df = pd.concat([fighters_df["FighterID"], pd.DataFrame(fighters_data)], axis=1)
-    fighters_data_df.dropna(inplace=True)
-    
-    fighters_data_df.to_csv("data/fighters_data.csv")
+            fighters.append(fighter)
+        except: continue
+
+    # цикл для забора информации по остальным бойцам
+    for content in soup:
+        # категория где фигурирует название Top Rank является абсолютной, а значит там смешаны все бойцы, что плохо, тк программа их разделяет по весовым категориям и по полу
+        division = content.find(name="h4").get_text()
+        if division.find("Top Rank") != -1: continue   
+
+        for block in content.findAll(name="tr"):
+            fighter = {}
+
+            fighter["Division"] = division
+            fighter["FighterID"] = randint(100000, 999999)
+            # последний символ при заборе имени - пробел, поэтому он не берется
+            fighter["Name"] = block.find(name="td", attrs={"class": "views-field-title"}).get_text()[:-1]
+            fighter["URL"] = MAIN_URL + block.find(name="td", attrs={"class": "views-field-title"}).findChild(name="a").get("href")        
+            fighter.update(parse_fighter(fighter["URL"]))
+            
+
+            fighters.append(fighter)
+
+    fighters_df = pd.DataFrame(data=fighters)
+    fighters_df.dropna(inplace=True)
+    fighters_df.to_csv("data/fighters.csv")
