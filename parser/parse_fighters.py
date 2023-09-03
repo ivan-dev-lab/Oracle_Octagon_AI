@@ -121,6 +121,3 @@ def parse_fighters_data ():
     fighters_data_df.dropna(inplace=True)
     
     fighters_data_df.to_csv("data/fighters_data.csv")
-
-
-parse_fighters_data ()
