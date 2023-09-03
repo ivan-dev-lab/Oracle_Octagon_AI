@@ -56,7 +56,7 @@ def parse_fighter (url: str) -> dict:
         
         return fighter_data
     except: 
-        print(f"{url} - боец пропущен")
+        print(f"{url} - у бойца нет статистики")
         return {}
 
 def parse_top_fighters ():
