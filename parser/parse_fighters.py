@@ -27,7 +27,7 @@ def parse_fighters ():
             fighter["Division"] = division
             fighter["FighterID"] = randint(100000, 999999)
             # последний символ при заборе имени - пробел, поэтому он не берется
-            fighter["Name"] = block.find(name="h5").get_text()[:-1]
+            fighter["Name"] = block.find(name="h5").get_text()
             fighter["Rank"] = 0
             fighter["URL"] = MAIN_URL + block.find(name="h5").findChild(name="a").get("href")        
         
@@ -56,7 +56,6 @@ def parse_fighters ():
 
     fighters_df = pd.DataFrame(data=fighters)
     fighters_df.to_csv("data/fighters.csv")
-
 # код парсинга данных бойца вынесен в отдельную функцию для более удобного использования
 def parse_one_fighter (url: str, soup: BeautifulSoup) -> dict:
     fighter_data = {}
