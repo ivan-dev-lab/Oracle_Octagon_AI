@@ -104,9 +104,9 @@ def parse_fights ():
                     check_result[0].clear()
                     check_result[1].append(url)
                 
-                FIGHTERS_DF = pd.read_csv("data/fighters.csv", index_col=[0])
+                fighters_df = pd.read_csv("data/fighters.csv", index_col=[0])
                 for url in check_result[1]:
-                    if FIGHTERS_DF[FIGHTERS_DF["URL"] == url].values.size > 0: 
+                    if fighters_df[fighters_df["URL"] == url].values.size > 0: 
                         print(f"{url} - боец уже есть в базе")
                         continue
                     
@@ -122,6 +122,6 @@ def parse_fights ():
                     fighters.append(fighter)
                 
                 
-                pd.concat([FIGHTERS_DF, pd.DataFrame(data=fighters)], ignore_index=True).to_csv("data/fighters.csv")
+                pd.concat([fighters_df, pd.DataFrame(data=fighters)], ignore_index=True).to_csv("data/fighters.csv")
             
 parse_fights ()
