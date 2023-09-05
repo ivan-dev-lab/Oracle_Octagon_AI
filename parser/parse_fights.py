@@ -94,19 +94,25 @@ def parse_fights ():
 
             # если в массиве с именами бойцов в бою 2 FighterID -> все бойцы найдены в базе
             if len(check_result[0]) == 2: 
-                fight_card["FighterID_red"] = check_result[0][0]
-                fight_card["FighterID_blue"] = check_result[0][1]
+                fight_card["FighterID_1"] = check_result[0][0]
+                fight_card["FighterID_2"] = check_result[0][1]
             else:
                 fighters = []
-                # если нет, то проверяется сначала хотя бы один FighterID, а потом парсятся все ссылки из второго массива
+                # если нет, то проверяется сначала хотя бы один FighterID -> с помощью которого ищется ссылка на него, 
+                # а потом парсятся все ссылки из второго массива
+                # это сделано с той целью, чтобы не потерять изначальный порядок бойцов. 
+                # Пример: было: ([882259], ["https://ufc.ru/athlete/rayan-spenn"], 
+                # стало: ["https://ufc.ru/athlete/volkan-ozdemir", "https://ufc.ru/athlete/rayan-spenn"])
                 if len(check_result[0]) == 1:
                     url = FIGHTERS_DF[FIGHTERS_DF["FighterID"] == check_result[0][0]]["URL"].values[0]
                     check_result[0].clear()
                     check_result[1].append(url)
+                    check_result[1].reverse() # reverse для того, чтобы сохранился порядок бойцов
+                # порядок бойцов нужен для того, чтобы в столбцах Result_1 и Result_2 писался исход боя для каждого
                 
                 fighters_df = pd.read_csv("data/fighters.csv", index_col=[0])
                 for url in check_result[1]:
-                    if fighters_df[fighters_df["URL"] == url].values.size > 0: 
+                    if fighters_df[fighters_df["URL"] == url].values.size > 0:
                         print(f"{url} - боец уже есть в базе")
                         continue
                     
