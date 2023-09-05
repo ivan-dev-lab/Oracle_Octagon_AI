@@ -3,11 +3,21 @@ from bs4 import BeautifulSoup
 import pandas as pd
 from random import randint
 import time
+import logging
 
+logging.basicConfig(level=logging.INFO, 
+                    filename="logs/parser.log", 
+                    filemode="w", 
+                    format="%(asctime)s %(levelname)s %(message)s",
+                    encoding="utf8")
+
+logging.getLogger(__name__)
 
 # код парсинга данных бойца вынесен в отдельную функцию для более удобного использования
 def parse_fighter (url: str) -> dict:
     response = requests.get(url)
+    if response.status_code == 200: logging.info(msg=f"Подключение к {url} выполнено успешно")
+    else: logging.warning(msg=f"Подключение к {url} не удалось. Код ошибки: {response.status_code}")
     soup = BeautifulSoup(response.text, "html.parser")
 
     fighter_data = {}
@@ -52,9 +62,10 @@ def parse_fighter (url: str) -> dict:
         # количество побед нокаутами ( на сайте 6 div с классом c-stat-3bar__value, кол-во побед КО/ТКО - div с порядковым номером в массиве 3)
         fighter_data["KO/TKO"] = int(soup.find_all(name="div", attrs={"class": "c-stat-3bar__value"})[3].get_text().split(" ")[0])
         
+        logging.info(msg=f"Данные о бойце собраны успешно - {url}")
         return fighter_data
     except: 
-        # print(f"{url} - у бойца нет статистики")
+        logging.info(msg=f"У бойца отсутствует статистика - {url}")
         return {}
 
 def parse_top_fighters () -> pd.DataFrame:
@@ -62,6 +73,9 @@ def parse_top_fighters () -> pd.DataFrame:
     RATING_URL = "https://ufc.ru/rankings"
 
     response = requests.get(RATING_URL)
+    if response.status_code == 200: logging.info(msg=f"Подключение к {RATING_URL} выполнено успешно")
+    else: logging.warning(msg=f"Подключение к {RATING_URL} не удалось. Код ошибки: {response.status_code}")
+
     soup = BeautifulSoup(response.text, "html.parser").find_all(name="div", attrs={"class": "view-grouping-content"})
 
     fighters = []
@@ -69,6 +83,7 @@ def parse_top_fighters () -> pd.DataFrame:
     # два цикла нужны потому что на сайте чемпионы по весовым категориям и полу представлены отдельно, а все остальные бойцы в табличном виде
 
     # цикл для забора информации по чемпионам
+    logging.info(msg=f"Сбор информации по чемпионам")
     for index,block in enumerate(soup):
         fighter = {}
 
@@ -87,7 +102,9 @@ def parse_top_fighters () -> pd.DataFrame:
             fighters.append(fighter)
         except: continue
 
-        print(f"{index}/{len(soup)-1}")
+    logging.info(msg=f"Информация по чемпионам собрана успешно")
+    
+    logging.info(msg=f"Сбор информации по бойцам из топа")
     # цикл для забора информации по остальным бойцам
     for index,content in enumerate(soup):
         # категория где фигурирует название Top Rank является абсолютной, а значит там смешаны все бойцы, что плохо, тк программа их разделяет по весовым категориям и по полу
@@ -107,7 +124,7 @@ def parse_top_fighters () -> pd.DataFrame:
 
             fighters.append(fighter)
 
-        print(f"{index}/{len(soup)-1}")
+    logging.info(msg=f"Информация по бойцам из топа собрана успешно")
     
     fighters_df = pd.DataFrame(data=fighters)
     fighters_df.dropna(inplace=True)
