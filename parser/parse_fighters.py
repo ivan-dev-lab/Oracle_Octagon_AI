@@ -22,6 +22,7 @@ def parse_fighter (url: str) -> dict:
 
     fighter_data = {}
     
+    logging.info(msg=f"Идет процесс сбора статистика бойца - {url}")
     try:
         # сбор физических показателей
         rows = soup.find_all(name="div", attrs={"class": "c-bio__row--3col"})
@@ -62,10 +63,10 @@ def parse_fighter (url: str) -> dict:
         # количество побед нокаутами ( на сайте 6 div с классом c-stat-3bar__value, кол-во побед КО/ТКО - div с порядковым номером в массиве 3)
         fighter_data["KO/TKO"] = int(soup.find_all(name="div", attrs={"class": "c-stat-3bar__value"})[3].get_text().split(" ")[0])
         
-        logging.info(msg=f"Данные о бойце собраны успешно - {url}")
+        logging.info(msg=f"Данные о бойце собраны успешно")
         return fighter_data
     except: 
-        logging.info(msg=f"У бойца отсутствует статистика - {url}")
+        logging.info(msg=f"У бойца отсутствует статистика")
         return {}
 
 def parse_top_fighters () -> pd.DataFrame:
@@ -84,7 +85,7 @@ def parse_top_fighters () -> pd.DataFrame:
 
     # цикл для забора информации по чемпионам
     logging.info(msg=f"Сбор информации по чемпионам")
-    for index,block in enumerate(soup):
+    for block in soup:
         fighter = {}
 
         try:
@@ -106,7 +107,7 @@ def parse_top_fighters () -> pd.DataFrame:
     
     logging.info(msg=f"Сбор информации по бойцам из топа")
     # цикл для забора информации по остальным бойцам
-    for index,content in enumerate(soup):
+    for content in soup:
         # категория где фигурирует название Top Rank является абсолютной, а значит там смешаны все бойцы, что плохо, тк программа их разделяет по весовым категориям и по полу
         division = content.find(name="h4").get_text()
         if division.find("Top Rank") != -1: continue   

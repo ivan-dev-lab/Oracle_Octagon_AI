@@ -2,19 +2,32 @@ import requests
 from bs4 import BeautifulSoup
 import pandas as pd
 from random import randint
+import logging
 from parse_fighters import parse_fighter
 
 MAIN_URL = "https://ufc.ru"
 EVENTS_URL = "https://ufc.ru/events"
 
+logging.basicConfig(level=logging.INFO, 
+                    filename="logs/parser.log", 
+                    filemode="w", 
+                    format="%(asctime)s %(levelname)s %(message)s",
+                    encoding="utf8")
+
+logging.getLogger(__name__)
+
 # на сайте представлена такая структура: 1 event = ссылка на чемпионат с множеством боев, поэтому парсятся сначала event
 def parse_events () -> list:
     response = requests.get(EVENTS_URL+"#events-list-past")
+    if response.status_code == 200: logging.info(msg=f"Подключение к {EVENTS_URL+'#events-list-past'} выполнено успешно")
+    else: logging.warning(msg=f"Подключение к {EVENTS_URL+'#events-list-past'} не удалось. Код ошибки: {response.status_code}")
+
     soup = BeautifulSoup(response.text, "html.parser")
 
     Urls = []
 
-    # на странице с ?page>=36 чемпионаты с теми бойцами, которых нету в рейтинге UFC
+    logging.info(msg="Начат процесс сбора чемпионатов/турниров")
+    # на странице с ?page>=36 чемпионаты/турниры с теми бойцами, которые уже давно не выступают
     for i in range(35+1):
         current_response = requests.get(f"{EVENTS_URL}?page={i}#events-list-past")
         soup = BeautifulSoup(current_response.text, "html.parser")
@@ -23,6 +36,7 @@ def parse_events () -> list:
         for link in buttons:
             if link.findNext("span").get_text().strip().lower() == "итоги":
                 Urls.append(MAIN_URL+link.get("href"))   
+    logging.info(msg="Процесс сбора чемпионатов/турниров успешно завершен")
 
 def check_fighters (fighters_df: pd.DataFrame, names: list[str], urls: list[str]) -> tuple[list, list]:
     # В ID_list добавляются идентификаторы бойцов, которые нашлись в базе
@@ -32,6 +46,7 @@ def check_fighters (fighters_df: pd.DataFrame, names: list[str], urls: list[str]
     ID_list = []
     URL_list = []
 
+    logging.info(msg=f"Идет проверка бойцов {urls[0]} и {urls[1]}")
     for index, name in enumerate(names):
         FighterID = fighters_df[fighters_df["Name"] == name]["FighterID"].values
     
@@ -39,6 +54,7 @@ def check_fighters (fighters_df: pd.DataFrame, names: list[str], urls: list[str]
             ID_list.append(FighterID[0])
 
         else: URL_list.append(urls[index])
+    logging.info(msg=f"Проверка успешно завершена")
 
     return (ID_list, URL_list)
 
@@ -46,9 +62,13 @@ def check_fighters (fighters_df: pd.DataFrame, names: list[str], urls: list[str]
 # то эта функция будет парсить их отдельно
 def get_fighter_bio (url: str) -> dict:
     response = requests.get(url)
+    if response.status_code == 200: logging.info(msg=f"Подключение к {url} выполнено успешно")
+    else: logging.warning(msg=f"Подключение к {url} не удалось. Код ошибки: {response.status_code}")
+
     soup = BeautifulSoup(response.text, "html.parser")
     bio = {}
 
+    logging.info(msg=f"Идет сбор личных данных о бойце {url}")
     try:
         division = soup.find(name="p", attrs={"class": "hero-profile__tag"}).get_text().strip().replace("\n", "")
         if division.find("#") != -1: division = " ".join(division.split(" ")[1:]).strip()
@@ -57,24 +77,25 @@ def get_fighter_bio (url: str) -> dict:
         bio["FighterID"] = randint(100000,999999)
         bio["Name"] = soup.find(name="h1", attrs={"class": "hero-profile__name"}).get_text()
         bio["URL"] = url
-
+        logging.info(msg=f"Сбор данных успешно завершен")
         return bio
-    except: return {}
-
+    except: 
+        logging.info(msg=f"У бойца отсутствуют личные данные")
+        return {}
 
 def parse_fights () -> list():
-    LINKS_EVENTS = [] # parse_events()  
-    # убрать после завершения работы    
-    with open("events.txt", "r", encoding="utf8") as f:
-        for line in f.readlines():
-            LINKS_EVENTS.append(line.strip())
+    LINKS_EVENTS = parse_events()  
     result = [] # массив для возврата бойцов, которых добавили в базу и истории боёв
     fighters_df = pd.read_csv("data/fighters.csv", index_col=[0])
     fighters = []
     fight_cards = []
-    for index,event_url in enumerate(LINKS_EVENTS):
-        print(f"{index}/{len(LINKS_EVENTS)}")
+
+    logging.info(msg=f"Идет обработка чемпионата - {event_url}")
+    for event_url in LINKS_EVENTS:
         response = requests.get(event_url)
+        if response.status_code == 200: logging.info(msg=f"Подключение к {event_url} выполнено успешно")
+        else: logging.warning(msg=f"Подключение к {url} не удалось. Код ошибки: {response.status_code}")
+
         soup = BeautifulSoup(response.text, "html.parser")
 
         fight_cards_ResultSet = soup.find(name="ul", attrs={"class": "l-listing__group--bordered"}).find_all(name="li")
@@ -100,7 +121,6 @@ def parse_fights () -> list():
             
             check_result = check_fighters(fighters_df, fighter_names, fighter_urls)
             
-            
             # если в массиве с именами бойцов в бою 2 FighterID -> все бойцы найдены в базе
             if len(check_result[0]) == 2: 
                 fight_card["FighterID_1"] = check_result[0][0]
@@ -122,7 +142,6 @@ def parse_fights () -> list():
                 for i,url in enumerate(check_result[1], start=1):
                     if fighters_df[fighters_df["URL"] == url].values.size > 0:
                         fight_card[f"FighterID_{i}"] = fighters_df[fighters_df["URL"] == url]["FighterID"].values
-                        # print(f"{url} - боец уже есть в базе")
                         continue
                     
                     fighter_bio = get_fighter_bio(url)
@@ -149,6 +168,8 @@ def parse_fights () -> list():
                 # именно 6, потому что карточка боя с 6 параметрами включает в себя: FightID, URL, 
                 # FighterID_1, FighterID_2, Result_1, Result_2
                 fight_cards.append(fight_card)
+
+        logging.info(msg=f"Обработка чемпионата завершена успешно")
     
     result.append(pd.concat([fighters_df, pd.DataFrame(data=fighters)], ignore_index=True))        
     result.append(pd.DataFrame(data=fight_cards))
