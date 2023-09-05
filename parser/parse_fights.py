@@ -37,6 +37,7 @@ def parse_events () -> list:
             if link.findNext("span").get_text().strip().lower() == "итоги":
                 Urls.append(MAIN_URL+link.get("href"))   
     logging.info(msg="Процесс сбора чемпионатов/турниров успешно завершен")
+    return Urls
 
 def check_fighters (fighters_df: pd.DataFrame, names: list[str], urls: list[str]) -> tuple[list, list]:
     # В ID_list добавляются идентификаторы бойцов, которые нашлись в базе
@@ -90,8 +91,8 @@ def parse_fights () -> list():
     fighters = []
     fight_cards = []
 
-    logging.info(msg=f"Идет обработка чемпионата - {event_url}")
     for event_url in LINKS_EVENTS:
+        logging.info(msg=f"Идет обработка чемпионата - {event_url}")
         response = requests.get(event_url)
         if response.status_code == 200: logging.info(msg=f"Подключение к {event_url} выполнено успешно")
         else: logging.warning(msg=f"Подключение к {url} не удалось. Код ошибки: {response.status_code}")
