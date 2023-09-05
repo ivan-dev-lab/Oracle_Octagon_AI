@@ -4,8 +4,6 @@ import pandas as pd
 from random import randint
 import time
 
-MAIN_URL = "https://ufc.ru"
-RATING_URL = "https://ufc.ru/rankings"
 
 # код парсинга данных бойца вынесен в отдельную функцию для более удобного использования
 def parse_fighter (url: str) -> dict:
@@ -56,10 +54,13 @@ def parse_fighter (url: str) -> dict:
         
         return fighter_data
     except: 
-        print(f"{url} - у бойца нет статистики")
+        # print(f"{url} - у бойца нет статистики")
         return {}
 
-def parse_top_fighters ():
+def parse_top_fighters () -> pd.DataFrame:
+    MAIN_URL = "https://ufc.ru"
+    RATING_URL = "https://ufc.ru/rankings"
+
     response = requests.get(RATING_URL)
     soup = BeautifulSoup(response.text, "html.parser").find_all(name="div", attrs={"class": "view-grouping-content"})
 
@@ -68,7 +69,7 @@ def parse_top_fighters ():
     # два цикла нужны потому что на сайте чемпионы по весовым категориям и полу представлены отдельно, а все остальные бойцы в табличном виде
 
     # цикл для забора информации по чемпионам
-    for block in soup:
+    for index,block in enumerate(soup):
         fighter = {}
 
         try:
@@ -86,8 +87,9 @@ def parse_top_fighters ():
             fighters.append(fighter)
         except: continue
 
+        print(f"{index}/{len(soup)-1}")
     # цикл для забора информации по остальным бойцам
-    for content in soup:
+    for index,content in enumerate(soup):
         # категория где фигурирует название Top Rank является абсолютной, а значит там смешаны все бойцы, что плохо, тк программа их разделяет по весовым категориям и по полу
         division = content.find(name="h4").get_text()
         if division.find("Top Rank") != -1: continue   
@@ -105,6 +107,9 @@ def parse_top_fighters ():
 
             fighters.append(fighter)
 
+        print(f"{index}/{len(soup)-1}")
+    
     fighters_df = pd.DataFrame(data=fighters)
     fighters_df.dropna(inplace=True)
-    fighters_df.to_csv("data/fighters.csv")
+    
+    return fighters_df
