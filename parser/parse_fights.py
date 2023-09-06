@@ -28,7 +28,7 @@ def parse_events () -> list:
 
     logging.info(msg="Начат процесс сбора чемпионатов/турниров")
     # на странице с ?page>=36 чемпионаты/турниры с теми бойцами, которые уже давно не выступают
-    for i in range(35+1):
+    for i in range(55+1):
         current_response = requests.get(f"{EVENTS_URL}?page={i}#events-list-past")
         soup = BeautifulSoup(current_response.text, "html.parser")
 
