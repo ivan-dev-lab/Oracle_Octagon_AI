@@ -49,7 +49,7 @@ def check_fighters (fighters_df: pd.DataFrame, names: list[str], urls: list[str]
 
     logging.info(msg=f"Идет проверка бойцов {urls[0]} и {urls[1]}")
     for index, name in enumerate(names):
-        FighterID = fighters_df[fighters_df["Name"] == name]["FighterID"].values
+        FighterID = fighters_df[fighters_df["Name"] == name]["FighterID"].values[0]
     
         if FighterID.size > 0:             
             ID_list.append(FighterID[0])
