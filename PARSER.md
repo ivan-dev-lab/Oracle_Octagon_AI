@@ -1,6 +1,6 @@
 # Модуль `parser/`
 
-## Подмодуль `parse_fighter.py`
+## Подмодуль `parse_fighters.py`
 Подмодуль выполняет функцию парсинга бойцов из рейтинга UFC
 ### **Описание функций:**
 - `parse_fighter (url: str)` - функция парсинга статистики об отдельном бойце по ссылке. <br> **Возвращает** словарь с ключами `['Age', 'Height', 'Weight', 'Experience', 'Arm span', 'Leg span', 'Accuracy strikes', 'Accented strikes', 'Missed strikes', 'Number takedowns', 'Strike protection', 'Takedown protection', 'Wins', 'Losses', 'Drafts', 'KO/TKO']` 
