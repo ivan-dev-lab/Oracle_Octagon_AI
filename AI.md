@@ -3,7 +3,7 @@
 ## Подмодуль `preprocess.py`
 Подмодуль выполняет предобработку данных
 ### Как это работает?
-![Структура данных](chemes/data_structure.png)
+![Структура данных](chemes/data_structure.png)<br>
 Есть `data/fighters.csv` и `data/fights.csv`. Как показано на схеме выше, они связаны между собой `FighterID`.<br>
 **Что делает** `preprocess.py`? 
 - Очищает данные `data/fighters.csv` и `data/fights.csv` от "пустых" значений
