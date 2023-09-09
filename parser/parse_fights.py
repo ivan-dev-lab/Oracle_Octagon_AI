@@ -17,7 +17,7 @@ logging.basicConfig(level=logging.INFO,
 logging.getLogger(__name__)
 
 # на сайте представлена такая структура: 1 event = ссылка на чемпионат с множеством боев, поэтому парсятся сначала event
-def parse_events () -> list:
+def parse_events (page: int=40) -> list:
     response = requests.get(EVENTS_URL+"#events-list-past")
     if response.status_code == 200: logging.info(msg=f"Подключение к {EVENTS_URL+'#events-list-past'} выполнено успешно")
     else: logging.warning(msg=f"Подключение к {EVENTS_URL+'#events-list-past'} не удалось. Код ошибки: {response.status_code}")
@@ -28,7 +28,7 @@ def parse_events () -> list:
 
     logging.info(msg="Начат процесс сбора чемпионатов/турниров")
     # на странице с ?page>=40 чемпионаты/турниры с теми бойцами, у которых редко указана статистика
-    for i in range(40+1):
+    for i in range(page+1):
         current_response = requests.get(f"{EVENTS_URL}?page={i}#events-list-past")
         soup = BeautifulSoup(current_response.text, "html.parser")
 
