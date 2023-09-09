@@ -30,12 +30,16 @@ def parse_events (page: int=40) -> list:
     # на странице с ?page>=40 чемпионаты/турниры с теми бойцами, у которых редко указана статистика
     for i in range(page+1):
         current_response = requests.get(f"{EVENTS_URL}?page={i}#events-list-past")
+        if current_response.status_code == 200: logging.info(msg=f"Подключение к {EVENTS_URL}?page={i}#events-list-past выполнено успешно")
+        else: logging.warning(msg=f"Подключение к {EVENTS_URL}?page={i}#events-list-past не удалось. Код ошибки: {current_response.status_code}")
+
         soup = BeautifulSoup(current_response.text, "html.parser")
 
         buttons = soup.find_all(name="a", attrs={"class": "e-button--white"})
         for link in buttons:
             if link.findNext("span").get_text().strip().lower() == "итоги":
-                Urls.append(MAIN_URL+link.get("href"))   
+                Urls.append(MAIN_URL+link.get("href"))  
+                logging.info(msg=f"Добавлена ссылка {MAIN_URL+link.get('href')}") 
     logging.info(msg="Процесс сбора чемпионатов/турниров успешно завершен")
     return Urls
 
@@ -49,7 +53,7 @@ def check_fighters (fighters_df: pd.DataFrame, names: list[str], urls: list[str]
 
     logging.info(msg=f"Идет проверка бойцов {urls[0]} и {urls[1]}")
     for index, name in enumerate(names):
-        FighterID = fighters_df[fighters_df["Name"] == name]["FighterID"].values[0]
+        FighterID = fighters_df[fighters_df["Name"] == name]["FighterID"].values
     
         if FighterID.size > 0:             
             ID_list.append(FighterID[0])
@@ -84,8 +88,8 @@ def get_fighter_bio (url: str) -> dict:
         logging.info(msg=f"У бойца отсутствуют личные данные")
         return {}
 
-def parse_fights () -> list():
-    LINKS_EVENTS = parse_events()  
+def parse_fights (page: int=40) -> list():
+    LINKS_EVENTS = parse_events(page)  
     result = [] # массив для возврата бойцов, которых добавили в базу и истории боёв
     fighters_df = pd.read_csv("data/fighters.csv", index_col=[0])
     fighters = []
