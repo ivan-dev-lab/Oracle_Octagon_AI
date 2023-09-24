@@ -16,7 +16,7 @@ model.fit(x_train,
           )
 
 
-model.load_weights("model/")
+model.load_weights("model/weights.h5")
 score = model.evaluate(x_test, y_test)
 
 print(f"Точность модели на тестовых данных: {round(score[1],2)*100}%")

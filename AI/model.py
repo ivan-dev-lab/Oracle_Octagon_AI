@@ -5,7 +5,7 @@ from keras.optimizers import Adam
 
 def callbacks () -> list:
     early_stopping = EarlyStopping(monitor="val_accuracy", min_delta=0.01, patience=7, restore_best_weights=True)
-    model_checkpoint = ModelCheckpoint(filepath="model/", monitor="val_accuracy", save_best_only=True, save_weights_only=True)
+    model_checkpoint = ModelCheckpoint(filepath="model/weights.h5", monitor="val_accuracy", save_best_only=True, save_weights_only=True)
 
     return [early_stopping, model_checkpoint]
 
